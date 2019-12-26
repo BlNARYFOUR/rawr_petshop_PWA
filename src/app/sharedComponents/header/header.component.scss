@@ -1,0 +1,95 @@
+$main-color: #cd2653;
+
+header {
+  background-color: $main-color;
+  height: 60px;
+  line-height: 57px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+
+  .header-title {
+    //padding-left: 30px;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+
+    h1 {
+      text-transform: capitalize;
+      font-size: 25px;
+      margin: 0;
+    }
+    h2 {
+      font-size: 10px;
+      margin: 0;
+      color: black;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+  }
+
+  .shopping-cart {
+    float: right;
+    color: black;
+
+    i {
+      vertical-align: middle;
+      font-size: 22px;
+      cursor: pointer;
+      position: relative;
+      outline: none;
+    }
+  }
+
+  .hamburger {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    transition: 500ms;
+    width: 25px;
+    height: 16px;
+    position: relative;
+
+    .hamburger-line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      position: absolute;
+
+      &.line-1 {
+        transition: 500ms;
+        top: 0;
+      }
+      &.line-2 {
+        transition: 500ms;
+        top: 7px;
+      }
+      &.line-3 {
+        transition: 500ms;
+        bottom: 0;
+      }
+    }
+
+    &.active {
+      .hamburger-line {
+        width: 37px;
+        &.line-1 {
+          transform: translateX(-3px) translateY(12px) rotate(45deg);
+        }
+        &.line-2 {
+          width: 0;
+          transform: translateX(17px);
+        }
+        &.line-3 {
+          transform: translateX(-3px) translateY(-12px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}

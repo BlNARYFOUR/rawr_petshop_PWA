@@ -1,0 +1,14 @@
+<header>
+    <div class="d-inline-block align-middle header-title">
+        <h1>The Rowr Shop</h1>
+        <h2>A Rawr affiliate</h2>
+    </div>
+    <div class="hamburger" (click)="onHamburgerClick()" [ngClass]="{'active' : toggleMenu}">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+    </div>
+    <div class="shopping-cart">
+        <i class="fas fa-shopping-cart" routerLink="/cart"></i>
+    </div>
+</header>

@@ -9,6 +9,8 @@ import {ProductService} from "../../services/product.service";
 })
 export class IndexComponent implements OnInit {
 
+    products: any;
+
     constructor(private _productService: ProductService) { }
 
     ngOnInit() {
@@ -19,6 +21,7 @@ export class IndexComponent implements OnInit {
         this._productService.getAllProducts().subscribe({
             next: (data: any) => {
                 console.log(data);
+                this.products = data;
             },
             error: (data: any) => {
                 console.log(data.error.error);
