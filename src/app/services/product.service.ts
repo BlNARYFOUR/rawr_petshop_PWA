@@ -10,10 +10,15 @@ export class ProductService {
     }
 
     getAllUrl = environment.apiUrl + 'products';
+    getProductUrl = environment.apiUrl + 'products/';
 
     urlAuthAddOn = '?consumer_key=' + environment.consumerKey + '&consumer_secret=' + environment.consumerSecret;
 
     getAllProducts() {
         return this._http.get(this.getAllUrl + this.urlAuthAddOn);
+    }
+
+    getProduct(id: number) {
+        return this._http.get(this.getProductUrl + id + this.urlAuthAddOn);
     }
 }

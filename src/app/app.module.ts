@@ -10,13 +10,15 @@ import { CartComponent } from './pages/cart/cart.component';
 import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         IndexComponent,
         HeaderComponent,
-        CartComponent
+        CartComponent,
+        ProductComponent
     ],
     imports: [
         BrowserModule,
