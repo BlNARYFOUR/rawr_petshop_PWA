@@ -10,6 +10,6 @@
     </div>
     <div class="shopping-cart hide-on-init" animateOnScroll animationName="animated fadeInRight">
         <i *ngIf="!isBackArrowActive()" class="fas fa-shopping-cart hide-on-init" routerLink="/cart" animateOnScroll animationName="animated bounceIn"></i>
-        <i *ngIf="isBackArrowActive()" class="fas fa-arrow-left hide-on-init" routerLink="/" animateOnScroll animationName="animated bounceIn"></i>
+        <i *ngIf="isBackArrowActive()" class="fas fa-arrow-left hide-on-init" (click)="routeOnClick()" animateOnScroll animationName="animated bounceIn"></i>
     </div>
 </header>

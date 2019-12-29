@@ -16,6 +16,7 @@ export class IndexComponent implements OnInit {
 
     ngOnInit() {
         this.showProducts();
+        HeaderService.route = "/";
         HeaderService.activateBackButton = false;
     }
 

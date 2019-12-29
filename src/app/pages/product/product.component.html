@@ -1,1 +1,43 @@
-<p>product works!</p>
+
+<main class="mt-2 container-fluid">
+    <section *ngIf="product != null">
+        <div class="position-relative">
+            <i class="fas fa-arrow-left hide-on-init position-absolute arrow-abs" routerLink="/" animateOnScroll animationName="animated fadeInLeft"></i>
+            <h2 class="lead font-weight-bold p-2 text-center text-capitalize">{{product['name']}}</h2>
+        </div>
+
+        <figure class="bg-white overflow-hidden rounded border border-light hide-on-init" animateOnScroll animationName="animated fadeIn">
+            <img class="img-fluid" src="{{product['images'][0]['src']}}" [alt]="product['slug']" [title]="product['name']"/>
+            <figcaption>
+                <div class="text-primary pl-3 pr-3 pt-2 pb-2">
+                    <i class="fas fa-star mr-2" *ngFor="let x of [].constructor(getInt(product['average_rating']))"></i>
+                    <i class="far fa-star mr-2" *ngFor="let x of [].constructor(5 - getInt(product['average_rating']))"></i>
+                    <span>({{product['rating_count']}})</span>
+                </div>
+                <hr class="m-0" />
+                <div class="pl-3 pr-3 pt-2 pb-2">
+                    <span>Categories: </span>
+                    <span *ngFor="let cat of product['categories'] let i = index">{{i == 0 ? '' : ', '}}{{cat['name']}}</span>
+                </div>
+                <hr class="m-0" />
+                <div class="pl-3 pr-3 pt-2 pb-2">
+                    <span>Stock: </span>
+                    <span>{{product['stock_status']}}</span>
+                </div>
+                <hr class="m-0" />
+                <div class="pl-3 pr-3 pt-2 pb-2">
+                    <span>Price: € </span>
+                    <span>{{product['price']}}</span>
+                </div>
+                <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" routerLink="/product/{{product['id']}}">Add to cart &nbsp;<i class="fas fa-shopping-cart"></i></a>
+            </figcaption>
+        </figure>
+
+        <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated fadeIn">
+            <h3 class="h6 font-weight-bold pl-3 pr-3 pt-2">Description</h3>
+            <div class="pl-3 pr-3" [innerHtml]="product['description']">
+
+            </div>
+        </div>
+    </section>
+</main>

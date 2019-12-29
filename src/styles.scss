@@ -35,5 +35,15 @@ body {
 }
 
 .border-light {
-  border-color: #eaeaea !important;
+  border: solid 2px #eaeaea !important;
 }
+
+.rounded {
+  border-radius: 0.5rem !important;
+}
+
+.arrow-abs {
+  font-size: 22px;
+  top: calc(50% - 11px);
+}
+

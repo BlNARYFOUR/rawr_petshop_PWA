@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HeaderService} from "../../services/header.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
 
     toggleMenu: boolean = false;
 
-    constructor(private _headerService: HeaderService) { }
+    constructor(private _headerService: HeaderService,
+                private _router: Router) { }
 
     ngOnInit() {
     }
@@ -23,4 +25,8 @@ export class HeaderComponent implements OnInit {
     isBackArrowActive = () => {
         return HeaderService.activateBackButton;
     };
+
+    routeOnClick() {
+        this._router.navigateByUrl(HeaderService.route);
+    }
 }

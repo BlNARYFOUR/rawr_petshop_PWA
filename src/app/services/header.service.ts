@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class HeaderService {
 
     public static activateBackButton = false;
+    public static route = "/";
 
     constructor() { }
 
