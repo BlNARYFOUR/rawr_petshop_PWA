@@ -8,6 +8,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './sharedComponents/header/header.component';
 import { CartComponent } from './pages/cart/cart.component';
 import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        AnimateOnScrollModule.forRoot()
+        AnimateOnScrollModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],
     bootstrap: [AppComponent]
