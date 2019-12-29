@@ -5,12 +5,15 @@
 @import '~bootstrap/dist/css/bootstrap-reboot.css';
 @import '~bootstrap/dist/css/bootstrap.css';
 
+$main-color: #cd2653;
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background-color: #fafafa;
 }
 
 .animated {
@@ -20,4 +23,17 @@ body {
 .hide-on-init {
   opacity: 0;
   transition: opacity 0s!important;
+}
+
+.text-primary {
+  color: $main-color !important;
+}
+
+.btn-primary {
+  background-color: $main-color !important;
+  border-color: $main-color !important;
+}
+
+.border-light {
+  border-color: #eaeaea !important;
 }

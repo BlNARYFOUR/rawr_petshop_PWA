@@ -1,1 +1,27 @@
-<p>index works!</p>
+
+<main class="container-fluid">
+    <ul class="row list-unstyled">
+        <li class="pb-0 pl-3 pr-3 pt-3 col-12" *ngFor="let product of products">
+            <div class="bg-white rounded border border-light hide-on-init" animateOnScroll animationName="animated bounceIn">
+                <figure class="row m-0 p-3">
+                    <div class="col-4 p-0">
+                        <div class="rounded-circle overflow-hidden img-product">
+                            <img class="img-fluid" src="{{product['images'][0]['src']}}" [alt]="product['slug']" [title]="product['name']"/>
+                        </div>
+                    </div>
+                    <figcaption class="col-8 pl-3">
+                        <div class="width-auto">
+                            <h2 class="lead font-weight-bold pt-1 pr-1 mb-0 width-auto">{{product['name']}}</h2>
+                            <h4 *ngIf="product['categories'][0] != null" class="small m-0">{{product['categories'][0]['name']}} <ng-container *ngIf="product['categories'][1] != null">- {{product['categories'][1]['name']}}</ng-container></h4>
+                            <h3 class="lead pt-2 font-weight-bold text-primary">€ {{product['price']}}</h3>
+                        </div>
+                    </figcaption>
+                </figure>
+                <div class="row m-0">
+                    <hr class="col-12 p-0 mt-0" />
+                    <a class="ml-3 mb-3 btn btn-primary text-white" routerLink="/product/{{product['id']}}">Shop Now ></a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</main>
