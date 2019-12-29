@@ -1,14 +1,15 @@
 <header>
-    <div class="d-inline-block align-middle header-title">
+    <div class="d-inline-block align-middle header-title hide-on-init" animateOnScroll animationName="animated slideInDown">
         <h1>The Rowr Shop</h1>
         <h2>A Rawr affiliate</h2>
     </div>
-    <div class="hamburger" (click)="onHamburgerClick()" [ngClass]="{'active' : toggleMenu}">
+    <div class="hamburger hide-on-init" animateOnScroll animationName="animated fadeInLeft" (click)="onHamburgerClick()" [ngClass]="{'active' : toggleMenu}">
         <span class="hamburger-line line-1"></span>
         <span class="hamburger-line line-2"></span>
         <span class="hamburger-line line-3"></span>
     </div>
-    <div class="shopping-cart">
-        <i class="fas fa-shopping-cart" routerLink="/cart"></i>
+    <div class="shopping-cart hide-on-init" animateOnScroll animationName="animated fadeInRight">
+        <i *ngIf="!isBackArrowActive()" class="fas fa-shopping-cart hide-on-init" routerLink="/cart" animateOnScroll animationName="animated bounceIn"></i>
+        <i *ngIf="isBackArrowActive()" class="fas fa-arrow-left hide-on-init" routerLink="/" animateOnScroll animationName="animated bounceIn"></i>
     </div>
 </header>

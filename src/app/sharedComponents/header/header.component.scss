@@ -78,16 +78,16 @@ header {
 
     &.active {
       .hamburger-line {
-        width: 37px;
+        width: 29px;
         &.line-1 {
-          transform: translateX(-3px) translateY(12px) rotate(45deg);
+          transform: translateX(-2px) translateY(7px) rotate(36.6738deg);
         }
         &.line-2 {
           width: 0;
           transform: translateX(17px);
         }
         &.line-3 {
-          transform: translateX(-3px) translateY(-12px) rotate(-45deg);
+          transform: translateX(-2px) translateY(-7px) rotate(-36.6738deg);
         }
       }
     }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/product.service";
+import {HeaderService} from "../../services/header.service";
 
 @Component({
     selector: 'app-index',
-    providers: [ProductService],
+    providers: [ProductService, HeaderService],
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss']
 })
@@ -15,6 +16,7 @@ export class IndexComponent implements OnInit {
 
     ngOnInit() {
         this.showProducts();
+        HeaderService.activateBackButton = false;
     }
 
     showProducts() {

@@ -7,6 +7,7 @@ import { IndexComponent } from './pages/index/index.component';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './sharedComponents/header/header.component';
 import { CartComponent } from './pages/cart/cart.component';
+import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { CartComponent } from './pages/cart/cart.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        AnimateOnScrollModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
