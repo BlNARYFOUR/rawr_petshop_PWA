@@ -1,9 +1,62 @@
 
 <main class="mt-2 container-fluid">
-    <section *ngIf="getCart().length !== 0">
-        <div class="position-relative">
-            <h2 class="lead font-weight-bold p-2 text-center text-capitalize">Shopping cart</h2>
+    <h2 class="lead font-weight-bold p-2 text-center text-capitalize">Shopping cart</h2>
+    <ul class="list-unstyled" *ngIf="getCart().length !== 0">
+        <li class="hide-on-init pb-3 pl-3 pr-3 pt-0 mb-4 bg-white rounded border border-light position-relative" animateOnScroll animationName="animated bounceIn" *ngFor="let product of getCart()">
+            <div class="text-ultra-small">
+                <figure class="row m-0 pl-0 pr-0 pt-3 pb-0">
+                    <div class="col-2 p-0">
+                        <div class="rounded-circle overflow-hidden img-product">
+                            <img class="img-fluid" src="{{product['images'][0]['src']}}" [alt]="product['slug']" [title]="product['name']"/>
+                        </div>
+                    </div>
+                    <figcaption class="col-4 pl-2 pr-0 lh-custom">
+                        <span class="pt-1 pr-1 mb-0 align-middle">{{product['name']}}</span>
+                    </figcaption>
+                    <div class="col-3 p-0 text-right lh-custom">
+                        <span class="align-middle">{{product['cart_amount']}} x €{{product['price']}}</span>
+                    </div>
+                    <div class="col-3 p-0 text-right lh-custom">
+                        <span class="align-middle">€{{(product['cart_amount'] * product['price']) | number: '1.2-2'}}</span>
+                    </div>
+                </figure>
+                <div class="row m-0 pl-0 pr-0 pt-3 pb-0 add-quantity" *ngIf="product['edit']">
+                    <div class="col-3 p-0">
+                        <label class="p-0 m-0 align-middle" for="quantity">Quantity: </label>
+                    </div>
+                    <span class="btn rounded-circle" (click)="decreaseAmount(product)"><span (click)="decreaseAmount(product)">-</span></span>
+                    <input class="form-control col-2 p-1 ml-2 mr-2" (change)="onAmountChange(product)" value="{{product['cart_amount']}}" id="quantity" type="number" step="1" min="1" max="999" />
+                    <span class="btn rounded-circle" (click)="increaseAmount(product)"><span (click)="increaseAmount(product)">+</span></span>
+                </div>
+            </div>
+            <div class="cart-item-delete" (click)="deleteItem(product['id'])">
+                <i class="fas fa-trash-alt" (click)="deleteItem(product['id'])"></i>
+            </div>
+            <div class="cart-item-edit text-white btn-primary" (click)="editItem(product)">
+                <i class="fas fa-pencil-alt" (click)="editItem(product)"></i>
+            </div>
+        </li>
+    </ul>
+
+    <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated bounceIn">
+        <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Order Summary</h3>
+        <div class="row pl-3 pb-2 pr-3">
+            <span class="col-5">Subtotal</span>
+            <span class="col-7 text-right">€{{getSubTotal() | number: '1.2-2'}}</span>
         </div>
-    </section>
+        <div class="row pl-3 pb-2 pr-3">
+            <span class="col-5">Shipping</span>
+            <span class="col-7 text-right">t.b.d.</span>
+        </div>
+        <div class="row pl-3 pb-2 pr-3">
+            <span class="col-5">Total</span>
+            <span class="col-7 text-right">Max. €{{getSubTotal() + shippingInternational | number: '1.2-2'}}</span>
+        </div>
+        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
+    </div>
+
+    <div *ngIf="getCart().length === 0" class="bg-white overflow-hidden rounded border border-light hide-on-init pl-3 pr-3 pt-2 pb-2" animateOnScroll animationName="animated fadeIn">
+        <span>Your shopping cart is empty.</span>
+    </div>
 </main>
 

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CartService {
 
     public static products: any = [];
@@ -19,10 +17,23 @@ export class CartService {
         if(data !== null) {
             CartService.products = JSON.parse(data);
         }
+
+        CartService.products.forEach((product) => {product['edit'] = false});
+    }
+
+    public static deleteItem(id: number) {
+        for(let i = CartService.products.length - 1; 0 <= i; i--) {
+            if(CartService.products[i]['id'] === id) {
+                CartService.products.splice(i, 1);
+            }
+        }
+
+        CartService.updateLocalStorage();
     }
 
     public static addProduct(product: any) {
         if(!CartService.containsProduct(product)) {
+            product['cart_amount'] = 1;
             CartService.products.push(product);
             CartService.updateLocalStorage();
             return true;
