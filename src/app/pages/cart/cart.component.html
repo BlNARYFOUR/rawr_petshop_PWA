@@ -38,6 +38,10 @@
         </li>
     </ul>
 
+    <div *ngIf="getCart().length === 0" class="bg-white overflow-hidden rounded border border-light hide-on-init pl-3 pr-3 pt-2 pb-2 mb-3" animateOnScroll animationName="animated fadeIn">
+        <span>Your shopping cart is empty.</span>
+    </div>
+
     <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated bounceIn">
         <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Order Summary</h3>
         <div class="row pl-3 pb-2 pr-3">
@@ -52,11 +56,7 @@
             <span class="col-5">Total</span>
             <span class="col-7 text-right">Max. €{{getSubTotal() + shippingInternational | number: '1.2-2'}}</span>
         </div>
-        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
-    </div>
-
-    <div *ngIf="getCart().length === 0" class="bg-white overflow-hidden rounded border border-light hide-on-init pl-3 pr-3 pt-2 pb-2" animateOnScroll animationName="animated fadeIn">
-        <span>Your shopping cart is empty.</span>
+        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0}">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
     </div>
 </main>
 
