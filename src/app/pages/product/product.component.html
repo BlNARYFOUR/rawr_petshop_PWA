@@ -7,7 +7,7 @@
         </div>
 
         <figure class="bg-white overflow-hidden rounded border border-light hide-on-init" animateOnScroll animationName="animated fadeIn">
-            <img class="img-fluid" src="{{product['images'][0]['src']}}" [alt]="product['slug']" [title]="product['name']"/>
+            <img class="img-fluid w-100" src="{{product['images'][0]['src']}}" [alt]="product['slug']" [title]="product['name']"/>
             <figcaption>
                 <div class="text-primary pl-3 pr-3 pt-2 pb-2">
                     <i class="fas fa-star mr-2" *ngFor="let x of [].constructor(getInt(product['average_rating']))"></i>
@@ -26,12 +26,21 @@
                 </div>
                 <hr class="m-0" />
                 <div class="pl-3 pr-3 pt-2 pb-2">
-                    <span>Price: € </span>
+                    <span>Price: €</span>
                     <span>{{product['price']}}</span>
                 </div>
-                <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" routerLink="/product/{{product['id']}}">Add to cart &nbsp;<i class="fas fa-shopping-cart"></i></a>
+                <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" (click)="addToCart()">Add to cart &nbsp;<i class="fas fa-shopping-cart"></i></a>
             </figcaption>
         </figure>
+
+        <div class="alert alert-success" *ngIf="showSuccess">
+            <a class="close align-middle" (click)="dismissSuccess()">&times;</a>
+            <strong>Added to cart!</strong>
+        </div>
+        <div class="alert alert-danger" *ngIf="showError">
+            <a class="close align-middle" (click)="dismissError()">&times;</a>
+            <strong>Already in cart!</strong>
+        </div>
 
         <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated fadeIn">
             <h3 class="h6 font-weight-bold pl-3 pr-3 pt-2">Description</h3>

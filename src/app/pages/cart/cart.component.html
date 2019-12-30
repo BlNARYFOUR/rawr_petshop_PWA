@@ -1,4 +1,9 @@
 
-<main class="container-fluid">
-    <p>cart works!</p>
+<main class="mt-2 container-fluid">
+    <section *ngIf="getCart().length !== 0">
+        <div class="position-relative">
+            <h2 class="lead font-weight-bold p-2 text-center text-capitalize">Shopping cart</h2>
+        </div>
+    </section>
 </main>
+
