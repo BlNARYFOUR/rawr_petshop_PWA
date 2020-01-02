@@ -56,7 +56,7 @@
             <span class="col-5">Total</span>
             <span class="col-7 text-right">Max. €{{getSubTotal() + shippingInternational | number: '1.2-2'}}</span>
         </div>
-        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0}">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
+        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0}" (click)="onTryCheckout()">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
     </div>
 </main>
 

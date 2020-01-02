@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HeaderService} from "../../services/header.service";
 import {CartService} from "../../services/cart.service";
 import {OrderService} from "../../services/order.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-cart',
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
 
     shippingInternational: number = 0;
 
-    constructor(private _orderService: OrderService) { }
+    constructor(private _orderService: OrderService,
+                private _router: Router) { }
 
     ngOnInit() {
         HeaderService.activateBackButton = true;
@@ -80,7 +82,7 @@ export class CartComponent implements OnInit {
     };
 
     onAmountChange = (product: any) => {
-        let amount = event.currentTarget.value;
+        let amount = parseInt((<HTMLInputElement>event.currentTarget).value);
 
         if(amount < 1) {
             amount = 1;
@@ -104,4 +106,11 @@ export class CartComponent implements OnInit {
 
         return subtotal;
     };
+
+    onTryCheckout() {
+        if(0 < this.getCart().length) {
+            // noinspection JSIgnoredPromiseFromCall
+            this._router.navigateByUrl('/checkout')
+        }
+    }
 }
