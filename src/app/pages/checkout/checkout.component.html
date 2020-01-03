@@ -8,50 +8,76 @@
 
     <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated bounceIn">
         <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Shipping Address</h3>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Subtotal</span>
-            <span class="col-7 text-right">€0.0</span>
-        </div>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Shipping</span>
-            <span class="col-7 text-right">t.b.d.</span>
-        </div>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Total</span>
-            <span class="col-7 text-right">Max. €0.0</span>
-        </div>
+        <form id="shipping_address_form" class="row pl-3 pt-2 pb-2 pr-4">
+            <label class="col-5 mt-auto mb-auto" for="first_name_shipping">First name:</label><input class="col-7 mb-2 form-control" id="first_name_shipping" name="first_name" placeholder="John" />
+            <label class="col-5 mt-auto mb-auto" for="last_name_shipping">Last name:</label><input class="col-7 mb-2 form-control" id="last_name_shipping" name="last_name" placeholder="Doe" />
+            <label class="col-5 mt-auto mb-auto" for="address_1_shipping">Address:</label><input class="col-7 mb-2 form-control" id="address_1_shipping" name="address_1" placeholder="" />
+            <label class="col-5 mt-auto mb-auto" for="address_2_shipping">Address (2):</label><input class="col-7 mb-2 form-control" id="address_2_shipping" name="address_2" placeholder="" />
+            <label class="col-5 mt-auto mb-auto" for="city_shipping">City:</label><input class="col-7 mb-2 form-control" id="city_shipping" name="city" placeholder="San Francisco" />
+            <label class="col-5 mt-auto mb-auto" for="state_shipping">State:</label><input class="col-7 mb-2 form-control" id="state_shipping" name="state" placeholder="CA or California" />
+            <label class="col-5 mt-auto mb-auto" for="postcode_shipping">Postcode:</label><input class="col-7 mb-2 form-control" id="postcode_shipping" name="postcode" placeholder="94103" />
+            <label class="col-5 mt-auto mb-auto">Country:</label>
+            <select class="col-7 mb-2 form-control" title="payment_method" id="country_shipping" name="country" (change)="updateShippingCost()">
+                <option [value]="country['code']" *ngFor="let country of countryList" [innerHtml]="country['name']"></option>
+            </select>
+        </form>
     </div>
 
     <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated bounceIn">
         <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Billing Address</h3>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Subtotal</span>
-            <span class="col-7 text-right">€0.0</span>
-        </div>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Shipping</span>
-            <span class="col-7 text-right">t.b.d.</span>
-        </div>
-        <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Total</span>
-            <span class="col-7 text-right">Max. €0.0</span>
-        </div>
+        <form id="billing_address_form" class="row pl-3 pt-2 pb-2 pr-4">
+            <label class="col-5 mt-auto mb-auto" for="first_name_shipping">First name:</label><input class="col-7 mb-2 form-control" id="first_name_billing" name="first_name" placeholder="John" />
+            <label class="col-5 mt-auto mb-auto" for="last_name_shipping">Last name:</label><input class="col-7 mb-2 form-control" id="last_name_billing" name="last_name" placeholder="Doe" />
+            <label class="col-5 mt-auto mb-auto" for="address_1_shipping">Address:</label><input class="col-7 mb-2 form-control" id="address_1_billing" name="address_1" placeholder="" />
+            <label class="col-5 mt-auto mb-auto" for="address_2_shipping">Address (2):</label><input class="col-7 mb-2 form-control" id="address_2_billing" name="address_2" placeholder="" />
+            <label class="col-5 mt-auto mb-auto" for="city_shipping">City:</label><input class="col-7 mb-2 form-control" id="city_billing" name="city" placeholder="San Francisco" />
+            <label class="col-5 mt-auto mb-auto" for="state_shipping">State:</label><input class="col-7 mb-2 form-control" id="state_billing" name="state" placeholder="CA or California" />
+            <label class="col-5 mt-auto mb-auto" for="postcode_shipping">Postcode:</label><input class="col-7 mb-2 form-control" id="postcode_billing" name="postcode" placeholder="94103" />
+            <label class="col-5 mt-auto mb-auto">Country:</label>
+            <select class="col-7 mb-2 form-control" title="payment_method" id="country_billing" name="country">
+                <option [value]="country['code']" *ngFor="let country of countryList" [innerHtml]="country['name']"></option>
+            </select>
+            <label class="col-5 mt-auto mb-auto" for="phone_billing">Phone:</label><input class="col-7 mb-2 form-control" id="phone_billing" name="phone" placeholder="(+32) 0412 34 56 78" />
+            <label class="col-5 mt-auto mb-auto" for="email_billing">Email:</label><input class="col-7 mb-2 form-control" id="email_billing" name="email" placeholder="john.doe@example.com" />
+        </form>
     </div>
 
     <div class="bg-white overflow-hidden rounded border border-light hide-on-init mb-3" animateOnScroll animationName="animated bounceIn">
-        <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Order Summary</h3>
+        <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Payment Summary</h3>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Subtotal</span>
-            <span class="col-7 text-right">€0.0</span>
+            <span class="col-7 text-right">€ {{getSubTotal() | number: '1.2-2'}}</span>
         </div>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Shipping</span>
-            <span class="col-7 text-right">t.b.d.</span>
+            <span class="col-7 text-right" *ngIf="!shippingCost">t.b.d.</span>
+            <span class="col-7 text-right" *ngIf="shippingCost">€ {{shippingCost | number: '1.2-2'}}</span>
         </div>
         <div class="row pl-3 pb-2 pr-3">
-            <span class="col-5">Total</span>
-            <span class="col-7 text-right">Max. €0.0</span>
+            <span class="col-5 font-weight-bolder">Total</span>
+            <span class="col-7 text-right font-weight-bolder">€ {{getSubTotal() + shippingCost | number: '1.2-2'}}</span>
         </div>
-        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0 || orderPlaced}" (click)="onTryCheckout()">Place Order &nbsp;<i class="fas fa-coins"></i></a>
+        <hr class="m-0" />
+        <div class="row pl-3 pt-2 pb-2 pr-3">
+            <span class="col-5 mt-auto mb-auto">Method:</span>
+            <span class="col-7 text-right pt-1 pb-1">
+                <select class="form-control" title="payment_method" id="payment_method" (change)="getPaymentMethodDetails()">
+                    <option value="bacs">Direct Bank Transfer</option>
+                </select>
+            </span>
+        </div>
+        <div class="row pl-3 pb-2 pr-3" *ngIf="paymentMethod">
+            <span class="col-12 small">{{paymentMethod['description']}}</span>
+        </div>
+        <div class="alert alert-success m-0" *ngIf="showSuccess">
+            <span class="d-block"><strong>Order has been placed!</strong></span>
+            <span class="d-block">Mention following Order Key in the payment:</span>
+            <span class="font-weight-bolder">Order Key: {{orderKey}}</span>
+        </div>
+        <div class="alert alert-danger m-0" *ngIf="showError">
+            <span class="d-block"><strong>Order failed!</strong></span>
+            <span>Make sure to fill everything in correctly.</span>
+        </div>
+        <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0 || orderPlaced}" (click)="onTryOrder()">Place Order &nbsp;<i class="fas fa-coins"></i></a>
     </div>
 </main>

@@ -46,7 +46,7 @@
         <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Order Summary</h3>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Subtotal</span>
-            <span class="col-7 text-right">€{{getSubTotal() | number: '1.2-2'}}</span>
+            <span class="col-7 text-right">€ {{getSubTotal() | number: '1.2-2'}}</span>
         </div>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Shipping</span>
@@ -54,7 +54,7 @@
         </div>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Total</span>
-            <span class="col-7 text-right">Max. €{{getSubTotal() + shippingInternational | number: '1.2-2'}}</span>
+            <span class="col-7 text-right">Max. € {{getSubTotal() + shippingInternational | number: '1.2-2'}}</span>
         </div>
         <a class="btn btn-primary text-white text-uppercase rounded-0 w-100" [ngClass]="{'disabled' : getCart().length === 0}" (click)="onTryCheckout()">Go to checkout &nbsp;<i class="fas fa-coins"></i></a>
     </div>
