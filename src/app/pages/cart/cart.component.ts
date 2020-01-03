@@ -20,28 +20,12 @@ export class CartComponent implements OnInit {
     ngOnInit() {
         HeaderService.activateBackButton = true;
         HeaderService.menuActive = false;
-        this.showCountryList();
         this.getMaxShippingCost();
     }
 
     getCart = () => {
         return CartService.products;
     };
-
-    showCountryList() {
-        this._orderService.getCountryList().subscribe({
-            next: (data: any) => {
-                console.log(data);
-            },
-            error: (data: any) => {
-                console.log(data.error.error);
-
-                if (data.error) {
-                    // TODO
-                }
-            }
-        });
-    }
 
     getMaxShippingCost() {
         this._orderService.getInternationalShipping().subscribe({
