@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
     showSuccess: boolean = false;
     showError: boolean = false;
     orderKey: string;
+    subTotal: number = 0.0;
 
     constructor(private _router: Router,
                 private _orderService: OrderService) { }
@@ -32,6 +33,7 @@ export class CheckoutComponent implements OnInit {
             // this._router.navigateByUrl("/cart");
         } else {
             this.showCountryList();
+            this.getSubTotal();
             this.getPaymentMethodDetails();
         }
     }
@@ -62,11 +64,11 @@ export class CheckoutComponent implements OnInit {
             subtotal += product['price'] * product['cart_amount'];
         });
 
-        return subtotal;
+        this.subTotal = subtotal;
     };
 
     getPaymentMethodDetails = () => {
-        this._orderService.getPaymentMethod(document.querySelector("#payment_method").value).subscribe({
+        this._orderService.getPaymentMethod(document.querySelector("#payment_method")['value']).subscribe({
             next: (data: any) => {
                 this.paymentMethod = data;
             },
@@ -111,7 +113,7 @@ export class CheckoutComponent implements OnInit {
     };
 
     updateShippingCost = () => {
-        let countryCode = document.querySelector("#country_shipping").value;
+        let countryCode = document.querySelector("#country_shipping")['value'];
 
         if(countryCode === "BE") {
             this.getNationalShipping();
@@ -140,7 +142,7 @@ export class CheckoutComponent implements OnInit {
 
     getFormAsJson = (id: string) => {
         let data = {};
-        let fields = document.querySelector('#' + id).elements;
+        let fields = document.querySelector('#' + id)['elements'];
 
         for(let i=0; i < fields.length; i++) {
             data[fields[i].name] = fields[i].value;
@@ -163,7 +165,7 @@ export class CheckoutComponent implements OnInit {
     };
 
     getFieldValue = (id: string) => {
-        return document.querySelector('#' + id).value;
+        return document.querySelector('#' + id)['value'];
     };
 
     submitOrder = () => {
@@ -171,11 +173,13 @@ export class CheckoutComponent implements OnInit {
             next: (data: any) => {
                 this.orderKey = data['order_key'].split('_')[2];
                 this.showSuccess = true;
+                this.showError = false;
                 CartService.products = [];
                 this.orderPlaced = false;
             },
             error: (data: any) => {
                 this.showError = true;
+                this.showSuccess = false;
                 this.orderPlaced = false;
                 console.log(data.error.error);
 

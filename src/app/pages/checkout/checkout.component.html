@@ -46,7 +46,7 @@
         <h3 class="h5 font-weight-bold pl-3 pr-3 pt-2">Payment Summary</h3>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Subtotal</span>
-            <span class="col-7 text-right">€ {{getSubTotal() | number: '1.2-2'}}</span>
+            <span class="col-7 text-right">€ {{subTotal | number: '1.2-2'}}</span>
         </div>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5">Shipping</span>
@@ -55,7 +55,7 @@
         </div>
         <div class="row pl-3 pb-2 pr-3">
             <span class="col-5 font-weight-bolder">Total</span>
-            <span class="col-7 text-right font-weight-bolder">€ {{getSubTotal() + shippingCost | number: '1.2-2'}}</span>
+            <span class="col-7 text-right font-weight-bolder">€ {{subTotal + shippingCost | number: '1.2-2'}}</span>
         </div>
         <hr class="m-0" />
         <div class="row pl-3 pt-2 pb-2 pr-3">
@@ -71,8 +71,8 @@
         </div>
         <div class="alert alert-success m-0" *ngIf="showSuccess">
             <span class="d-block"><strong>Order has been placed!</strong></span>
-            <span class="d-block">Mention following Order Key in the payment:</span>
-            <span class="font-weight-bolder">Order Key: {{orderKey}}</span>
+            <span>Mention following Order Key in the payment: </span>
+            <span class="font-weight-bolder">{{orderKey}}</span>
         </div>
         <div class="alert alert-danger m-0" *ngIf="showError">
             <span class="d-block"><strong>Order failed!</strong></span>
