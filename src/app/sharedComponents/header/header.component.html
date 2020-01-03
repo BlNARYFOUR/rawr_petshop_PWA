@@ -3,10 +3,16 @@
         <h1>The Rowr Shop</h1>
         <h2>A Rawr affiliate</h2>
     </div>
-    <div class="hamburger hide-on-init" animateOnScroll animationName="animated fadeInLeft" (click)="onHamburgerClick()" [ngClass]="{'active' : toggleMenu}">
+    <div class="hamburger hide-on-init" animateOnScroll animationName="animated fadeInLeft" (click)="onHamburgerClick()" [ngClass]="{'active' : getMenuState()}">
         <span class="hamburger-line line-1"></span>
         <span class="hamburger-line line-2"></span>
         <span class="hamburger-line line-3"></span>
+    </div>
+    <div class="header-popup" [ngClass]="{'active' : getMenuState()}">
+        <ul class="list-unstyled container">
+            <li class="text-center text-white border-bottom border-dark"><a class="text-white" routerLink="/">Home</a></li>
+            <li class="text-center text-white"><a class="text-white" routerLink="cart">Cart</a></li>
+        </ul>
     </div>
     <div class="shopping-cart hide-on-init" animateOnScroll animationName="animated fadeInRight">
         <i *ngIf="!isBackArrowActive()" class="fas fa-shopping-cart hide-on-init" routerLink="/cart" animateOnScroll animationName="animated bounceIn"><span *ngIf="0 < getCartSize()" class="badge badge-pill badge-light">{{getCartSize()}}</span></i>

@@ -11,6 +11,7 @@ import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ProductComponent } from './pages/product/product.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ProductComponent } from './pages/product/product.component';
         IndexComponent,
         HeaderComponent,
         CartComponent,
-        ProductComponent
+        ProductComponent,
+        CheckoutComponent
     ],
     imports: [
         BrowserModule,

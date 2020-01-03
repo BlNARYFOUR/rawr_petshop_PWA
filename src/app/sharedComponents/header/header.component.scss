@@ -102,3 +102,24 @@ header {
     }
   }
 }
+
+.header-popup {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  height: 0;
+  width: 100vw;
+  background-color: #921b3b;
+  overflow: hidden;
+  transition: 333ms;
+  border-top: transparent solid 0;
+
+  &.active {
+    border-top: #43121f40 solid 2px;
+    height: calc(100vh - 200px);
+  }
+
+  .border-dark {
+    border-bottom: 2px #43121f50 solid !important;
+  }
+}

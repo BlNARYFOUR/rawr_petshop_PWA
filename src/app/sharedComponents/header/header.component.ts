@@ -11,17 +11,19 @@ import {CartService} from "../../services/cart.service";
 })
 export class HeaderComponent implements OnInit {
 
-    toggleMenu: boolean = false;
-
     constructor(private _headerService: HeaderService,
                 private _router: Router) { }
 
     ngOnInit() {
     }
 
-    onHamburgerClick() {
-        this.toggleMenu = !this.toggleMenu;
-    }
+    getMenuState = () => {
+        return HeaderService.menuActive;
+    };
+
+    onHamburgerClick = () => {
+        HeaderService.menuActive = !HeaderService.menuActive;
+    };
 
     isBackArrowActive = () => {
         return HeaderService.activateBackButton;

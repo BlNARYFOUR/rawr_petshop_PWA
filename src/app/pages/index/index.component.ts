@@ -18,6 +18,7 @@ export class IndexComponent implements OnInit {
         this.showProducts();
         HeaderService.route = "/";
         HeaderService.activateBackButton = false;
+        HeaderService.menuActive = false;
     }
 
     showProducts() {
