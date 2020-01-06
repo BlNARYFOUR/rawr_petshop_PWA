@@ -21,6 +21,7 @@ export class CheckoutComponent implements OnInit {
     showError: boolean = false;
     orderKey: string;
     subTotal: number = 0.0;
+    shippingAddressEqualsBillingAddress: boolean = false;
 
     constructor(private _router: Router,
                 private _orderService: OrderService) { }
@@ -128,7 +129,7 @@ export class CheckoutComponent implements OnInit {
             "payment_method_title": this.paymentMethod.title,
             "set_paid": false,
             "billing": this.getFormAsJson('billing_address_form'),
-            "shipping": this.getFormAsJson('shipping_address_form'),
+            "shipping": this.shippingAddressEqualsBillingAddress ? this.getFormAsJson('billing_address_form') : this.getFormAsJson('shipping_address_form'),
             "line_items": this.getBasicCartInfo(),
             "shipping_lines": [
                 {
@@ -197,4 +198,8 @@ export class CheckoutComponent implements OnInit {
         console.log(this.checkoutData);
         console.log(CartService.products);
     }
+
+    onShippingAddressTypeChange = () => {
+        this.shippingAddressEqualsBillingAddress = document.querySelector("#same_as_billing_shipping")['checked'];
+    };
 }
