@@ -176,6 +176,7 @@ export class CheckoutComponent implements OnInit {
                 this.showSuccess = true;
                 this.showError = false;
                 CartService.products = [];
+                localStorage.clear();
                 this.orderPlaced = false;
             },
             error: (data: any) => {
